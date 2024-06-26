@@ -40,12 +40,28 @@ neutrons.append(create_neutron(width // 2, height // 2))
 # Main loop
 running = True
 while running:
-    pass
+    screen.fill((0, 0, 0))
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
 # Update neutron positions
+    for neutron in neutrons:
+        neutron["pos"] += neutron["vel"]
+        if neutron["pos"][0] < 0 or neutron["pos"][0] > width:
+            neutron["vel"][0] *= -1
+        if neutron["pos"][1] < 0 or neutron["pos"][1] > height:
+            neutron["vel"][1] *= -1
 
 # Check for collisions
+    neutrons_to_add = []
+    nuclei_to_remove = []
+    
+    #need for loop here...
+    
     # Collision
+    
     # Split nucleus and create new neutrons
 
 # Remove collided nuclei
@@ -55,3 +71,9 @@ while running:
 # Draw nuclei
 
 # Draw neutrons
+
+
+    pygame.display.flip()
+    pygame.time.delay(30)
+
+pygame.quit()
