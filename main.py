@@ -14,3 +14,11 @@ pygame.display.set_caption("Nuclear Fission Simulation")
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
+
+# Simulation parameters
+nucleus_radius = 10
+neutron_radius = 3
+nucleus_color = RED
+neutron_color = WHITE
+neutrons = []
+nuclei = []
