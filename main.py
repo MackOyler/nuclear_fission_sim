@@ -57,20 +57,29 @@ while running:
 # Check for collisions
     neutrons_to_add = []
     nuclei_to_remove = []
-    
-    #need for loop here...
-    
-    # Collision
-    
-    # Split nucleus and create new neutrons
+    for neutron in neutrons:
+        for nucleus in nuclei:
+            distance = np.linalg.norm(neutron["pos"] - nucleus["pos"])
+            if distance < nucleus_radius + neutron_radius:
+                # Collision occurred
+                nuclei_to_remove.append(nucleus["id"])
+                # Split nucleus and create new neutrons
+                for _ in range(3):
+                    neutrons_to_add.append(create_neutron(*neutron["pos"]))
 
 # Remove collided nuclei
-
+    nuclei = []
+    
 # Add new neutrons
 
-# Draw nuclei
 
+# Draw nuclei
+    for nucleus in nuclei:
+        pass
+    
 # Draw neutrons
+    for neutron in neutrons:
+        pass
 
 
     pygame.display.flip()
