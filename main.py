@@ -36,3 +36,22 @@ def create_neutron(x, y):
     return {"pos": np.array([x, y], dtype=float), "vel": np.array([vx, vy], dtype=float), "radius": neutron_radius}
 
 neutrons.append(create_neutron(width // 2, height // 2))
+
+# Main loop
+running = True
+while running:
+    pass
+
+# Update neutron positions
+
+# Check for collisions
+    # Collision
+    # Split nucleus and create new neutrons
+
+# Remove collided nuclei
+
+# Add new neutrons
+
+# Draw nuclei
+
+# Draw neutrons
