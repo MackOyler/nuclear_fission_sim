@@ -23,6 +23,9 @@ neutron_color = WHITE
 neutrons = []
 nuclei = []
 
+# Font for statistics
+font = pygame.font.Font(None, 36)
+
 # Initialize nuclei
 for i in range(10):
     x = random.randint(nucleus_radius, width - nucleus_radius)
@@ -45,6 +48,13 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:  # Left click to add neutron
+                x, y = event.pos
+                neutrons.append(create_neutron(x, y))
+            elif event.button == 3:  # Right click to add nucleus
+                x, y = event.pos
+                nuclei.append({"id": len(nuclei), "pos": np.array([x, y], dtype=float), "radius": nucleus_radius})
 
     # Update neutron positions
     for neutron in neutrons:
@@ -80,6 +90,13 @@ while running:
     # Draw neutrons
     for neutron in neutrons:
         pygame.draw.circle(screen, neutron_color, neutron["pos"].astype(int), neutron["radius"])
+
+    # Display statistics
+    num_neutrons = len(neutrons)
+    num_nuclei = len(nuclei)
+    stats_text = f"Neutrons: {num_neutrons}  Nuclei: {num_nuclei}"
+    stats_surface = font.render(stats_text, True, WHITE)
+    screen.blit(stats_surface, (10, 10))
 
     pygame.display.flip()
     pygame.time.delay(30)
